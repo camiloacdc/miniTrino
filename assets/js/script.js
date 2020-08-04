@@ -1,8 +1,8 @@
 var btnTrinar = document.getElementById("btnTrinar");
 var textoTrino = document.getElementById("textoTrino");
 
-var objTrinos =[];
-
+// var objTrinos =[];
+let objTrinos=obtTrino();
 
 mostrar();
 
@@ -10,11 +10,15 @@ var html = "";
 btnTrinar.onclick = function () {
     trinar();
 };
+
+
 function borrarTrino(trino) {
     objTrinos.splice(trino, 1)
-    localStorage.removeItem('objTrinos', JSON.stringify(objTrinos));
+     localStorage.setItem('objTrinos', JSON.stringify(objTrinos));
     mostrar();
 }
+
+
 function mostrar() {
     html = `<div class="histoTrino">`;
     for (let i = 0; i < objTrinos.length; i++) {
@@ -42,14 +46,7 @@ function mostrar() {
 function trinar() {
     if (textoTrino.value) {
 
-
-       
-        // const guardado = localStorage.getItem('objTrinos');
-        // const list=guardado ? JSON.parse(guardado):[];
-
-
-
-
+        
         objTrinos.unshift(
             {
                 'fecha': Date(),
@@ -60,7 +57,9 @@ function trinar() {
         textoTrino.value = '';
         console.log(objTrinos)
         localStorage.setItem('objTrinos',JSON.stringify(objTrinos));
+        
         mostrar();
+
         
        
     }
@@ -70,9 +69,8 @@ function trinar() {
 
 }
 
-function obtTrino(trino){
-    const guardado = localStorage.getItem('objTrinos');
-    const list=guardado ? JSON.parse(guardado):[];
-    return list;
-    console.log('objetoObtenido: ', JSON.parse(guardado));
+function obtTrino(){
+    let objTrinos = localStorage.getItem('objTrinos');
+objTrinos=objTrinos ? JSON.parse(objTrinos):[];
+return objTrinos;
 }
