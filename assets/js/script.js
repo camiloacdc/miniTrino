@@ -25,15 +25,21 @@ function mostrar() {
         
     
         for (let key in objTrinos) {
-            html += `<div class="container border border-dark mt-5 d-flex bd-highlight ">`;
+            html += `<div class="container border border-dark mt-5 "><div class="row  d-flex bd-highlight">`;
 const fecha=objTrinos[key]['fecha'];
 const trino=objTrinos[key]['trino']
             html += `<div class="p-2 flex-grow-1 bd-highlight trinos">${trino}</div><div class="fechas p-2 bd-highlight"> ${fecha}</div>`;
             
       
 
-        html += `<div class="p-2 bd-highlight align-self-start"><a class="btn text-danger removeItem " onclick="borrarTrino(${key})"> <span class="material-icons">
-    delete_forever  </span></a></div>`
+        html += `<div class="p-2 bd-highlight align-self-start"><a class="btn text-danger " onclick="borrarTrino(${key})"> <span class="material-icons removeItem">
+    delete_forever  </span></a></div> </div><div class="row"><div><a class="btn text-danger " > <span class="material-icons">
+    grade
+    </span></a></div><div><a class="btn text-danger " > <span class="material-icons">
+    wifi_protected_setup
+    </span></a></div><div><a class="btn text-danger " > <span class="material-icons">
+    comment_bank
+    </span></a></div></div>`
         html += `</div>`;
     }
   

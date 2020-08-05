@@ -5,3 +5,9 @@ body{
 textarea {
     resize: none;
 }
+.fechas{
+    font-size: .5em;
+}
+.removeItem{
+    font-size:2em
+}
