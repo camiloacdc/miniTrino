@@ -21,20 +21,22 @@ function borrarTrino(trino) {
 
 function mostrar() {
     html = `<div class="histoTrino">`;
-    for (let i = 0; i < objTrinos.length; i++) {
-        html += `<div class="container border border-dark mt-5">`;
-
-        for (let key in objTrinos[i]) {
-
-            html += objTrinos[i][key];
+    
+        
+    
+        for (let key in objTrinos) {
+            html += `<div class="container border border-dark mt-5 d-flex bd-highlight ">`;
+const fecha=objTrinos[key]['fecha'];
+const trino=objTrinos[key]['trino']
+            html += `<div class="p-2 flex-grow-1 bd-highlight trinos">${trino}</div><div class="fechas p-2 bd-highlight"> ${fecha}</div>`;
             
-        }
+      
 
-        html += `<a class="btn text-danger removeItem" onclick="borrarTrino(${i})"> <span class="material-icons">
-    delete_forever  </span></a>`
+        html += `<div class="p-2 bd-highlight align-self-start"><a class="btn text-danger removeItem " onclick="borrarTrino(${key})"> <span class="material-icons">
+    delete_forever  </span></a></div>`
         html += `</div>`;
-
     }
+  
     
     html += `</div>`;
     document.getElementById("containerTrinos").innerHTML = html;
@@ -47,7 +49,7 @@ function trinar() {
     if (textoTrino.value) {
 
         
-        objTrinos.unshift(
+        objTrinos.push(
             {
                 'fecha': Date(),
                 'trino': textoTrino.value
@@ -56,6 +58,11 @@ function trinar() {
         
         textoTrino.value = '';
         console.log(objTrinos)
+        objTrinos.sort(function (a, b) {
+            if (a.fecha > b.fecha) return -1;
+            if (a.fecha < b.fecha) return 1;
+            return 0;
+          });
         localStorage.setItem('objTrinos',JSON.stringify(objTrinos));
         
         mostrar();
@@ -74,3 +81,28 @@ function obtTrino(){
 objTrinos=objTrinos ? JSON.parse(objTrinos):[];
 return objTrinos;
 }
+
+
+// function mostrar() {
+//     html = `<div class="histoTrino">`;
+//     for (let i = 0; i < objTrinos.length; i++) {
+//         html += `<div class="container border border-dark mt-5">`;
+
+//         for (let key in objTrinos[i]) {
+
+//             html += objTrinos[i][key];
+            
+//         }
+
+//         html += `<a class="btn text-danger removeItem" onclick="borrarTrino(${i})"> <span class="material-icons">
+//     delete_forever  </span></a>`
+//         html += `</div>`;
+
+//     }
+    
+//     html += `</div>`;
+//     document.getElementById("containerTrinos").innerHTML = html;
+    
+    
+    
+// }
